@@ -10,7 +10,8 @@ let dbInput = require("../db/db.json")
 //is "db.json" correct for these?
 // const OUTPUT_DIR = path.resolve(__dirname, "../db/db.json")
 // const outputPath = path.join(OUTPUT_DIR, "../db/db.json")
-let noteId = userInput.map(note=>note.id)
+
+let noteId = dbInput.map(note=>note.id)
 
 module.exports = function (app) {
 // GET /api/notes - Should read the db.json file and return 
@@ -19,7 +20,7 @@ module.exports = function (app) {
         return JSON.parse(dbInput)
     })
 
-//posts the notes to api
+// posts the notes to api
     app.post("/api/notes", function(req, res) {
         let newNoteId = 0;
         while (noteId.includes(newNoteId)) {
