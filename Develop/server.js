@@ -9,8 +9,12 @@ app.use(express.static("public"))
 
 var PORT = 4444
 
-require("./routes/htmlRoutes")(app)
-require("./routes/apiroutes")(app)
+const htmlRoutes = require("./routes/htmlRoutes")
+const apiRoutes = require("./routes/apiRoutes")
+
+app.use("/", htmlRoutes)
+app.use("/api", apiRoutes)
+
 
 //activates the listener PORT
 app.listen(PORT, () => {
