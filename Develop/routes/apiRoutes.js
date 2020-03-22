@@ -47,17 +47,30 @@ let noteId = dbInput.map(note=>note.id)
         })
 
     })
-    ///"api/notes:newNoteId"
-    apiRoutes.delete("../db/db.json:id", (req, res) => {
-      const reqId = req.params.newNoteId
-      const dbData = dbInput.filter(dbData => {
-          return dbData.newNoteId == reqId
-      })[0]
+    apiRoutes.delete("/notes/:id", (req, res) => {
+        // console.log("are we here? delete...")
+        let newDbInput = []
+        for (let index = 0; index < dbInput.length; index++) {
+            if (dbInput[index].id != req.params.id) {
+                newDbInput.push(dbInput[index])                
+            }       
+        }
+        dbInput = newDbInput;
+        // dbInput => dbInput.filter(note => parseInt(note.id) != parseInt(req.params.id))    
+        // console.log("got here?")
+        fs.writeFile("./db/db.json", JSON.stringify(dbInput), "utf8", (err, data) => {
+            if (err) throw err;
+        }
+        );
+    }); 
+    //   const reqId = req.params.newNoteId;
+    //   const dbData = dbInput.filter(dbData => {
+    //     return dbData.newNoteId == reqId;
+    //   });
 
-      const index = dbInput.indexOf(dbData)
+    //   const index = dbInput.indexOf(dbData);
 
-      dbInput.splice(index, 1)
-      res.json({ message: `Note ${noteId} deleted`})
-    }) 
+    //   dbInput.splice(index, 1);
+    //   res.json({ message: `Note ${noteId} deleted` });
 
 module.exports=apiRoutes
