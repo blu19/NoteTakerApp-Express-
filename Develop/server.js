@@ -12,9 +12,9 @@ var PORT = 4444
 const htmlRoutes = require("./routes/htmlRoutes")
 const apiRoutes = require("./routes/apiRoutes")
 
-app.use("/", htmlRoutes)
+//route order matters
 app.use("/api", apiRoutes)
-
+app.use("/", htmlRoutes)
 
 //activates the listener PORT
 app.listen(PORT, () => {
