@@ -7,7 +7,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static("public"))
 
-var PORT = 4444
+var PORT = process.env.PORT||4444
 
 const htmlRoutes = require("./routes/htmlRoutes")
 const apiRoutes = require("./routes/apiRoutes")
