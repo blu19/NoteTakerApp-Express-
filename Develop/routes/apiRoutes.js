@@ -60,8 +60,7 @@ let noteId = dbInput.map(note=>note.id)
         // console.log("got here?")
         fs.writeFile("./db/db.json", JSON.stringify(dbInput), "utf8", (err, data) => {
             if (err) throw err;
-        }
-        );
+        });
     }); 
     //   const reqId = req.params.newNoteId;
     //   const dbData = dbInput.filter(dbData => {
