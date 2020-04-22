@@ -9,8 +9,8 @@ app.use(express.static("public"))
 
 var PORT = process.env.PORT||4444
 
-const htmlRoutes = require("./routes/htmlRoutes")
-const apiRoutes = require("./routes/apiRoutes")
+const htmlRoutes = require("./Develop/routes/htmlRoutes")
+const apiRoutes = require("./Develop/routes/apiRoutes")
 
 //route order matters
 app.use("/api", apiRoutes)
